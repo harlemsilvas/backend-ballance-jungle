@@ -41,12 +41,17 @@ sh experimento.sh dashboard  # Painel: http://localhost:38080
 
 O Swagger permite chamadas reais à API. `sh swagger.sh off` restaura a API sem Swagger. O painel contém relatórios históricos, filtros, gráficos, importação JSON e exportação CSV; não é monitoramento ao vivo. O comparativo recebido da VPS está em [summary-volume-vps.json](docs/benchmarks/summary-volume-vps.json): importe-o pelo botão do painel.
 
-```bash
-sh experimento.sh load         # Verificação curta: histórico 20, 24 comandos/caso.
-sh experimento.sh load-volume  # Compara históricos 100/1.000/3.000 por carteira.
-```
+**Carga — caminho recomendado para avaliação:** execute na raiz do repositório pelos scripts Docker abaixo. Eles iniciam PostgreSQL/SQS isolados, instalam as dependências na imagem e executam o runner Bun dentro do container. Não exigem Bun no host nem a API de demonstração em execução.
 
-Cada carga salva seus arquivos em `load-results/run-UUID/`. Ao concluir, importe o `summary.json` no painel. A população pode levar minutos; não execute cargas simultâneas no mesmo projeto. No desenvolvimento com Bun e infraestrutura configurada, o runner também está disponível como `bun run test:load`. [Metodologia e limites](docs/LOAD_TESTS.md).
+| Comando | Finalidade |
+| --- | --- |
+| `sh experimento.sh load` | Verificação curta: histórico 20, 24 comandos por cenário. |
+| `sh experimento.sh load3000` | Perfil focado: histórico 3.000 por carteira, 120 comandos por cenário. |
+| `sh experimento.sh load-volume` | Comparativo 100/1.000/3.000 por carteira, 120 comandos por cenário e duas repetições. |
+
+Para uma primeira conferência, use `sh experimento.sh load`. Cada execução salva arquivos em `load-results/run-UUID/`; após sucesso, importe seu `summary.json` no painel. A população dos perfis maiores pode levar minutos. Não execute cargas simultâneas no mesmo projeto.
+
+**Execução direta com Bun:** `bun run test:load`, `bun run test:load3000` e `bun run test:load:volume` existem, mas **não iniciam PostgreSQL/SQS nem instalam dependências**. Exigem Bun 1.4.4, `bun install --frozen-lockfile`, infraestrutura isolada e variáveis de conexão/`LOAD_CONFIRM=isolated`, conforme [preparação detalhada](docs/LOAD_TESTS.md#preparação-e-execução). O `.env` da aplicação não substitui essa preparação. Para apenas consultar o perfil sem executar carga, use `bun run test:load3000 --describe` (com Bun instalado).
 
 ## Operação e limites
 

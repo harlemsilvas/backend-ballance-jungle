@@ -4,6 +4,8 @@ O runner `bun run test:load` implementa o primeiro experimento do pacote 2 de PL
 
 ## Preparação e execução
 
+Para avaliação com apenas Docker instalado, prefira `sh experimento.sh load` (curto), `sh experimento.sh load3000` (focado) ou `sh experimento.sh load-volume` (comparativo). Esses scripts preparam infraestrutura e dependências automaticamente. Os comandos Bun abaixo são a alternativa de desenvolvimento com preparação manual; não são necessários para o fluxo Docker. Para usar o perfil focado/comparativo nesse fluxo manual, substitua `bun run test:load` no exemplo por `bun run test:load3000` ou `bun run test:load:volume`, preservando as variáveis de conexão e confirmação.
+
 Use uma infraestrutura exclusiva. O exemplo abaixo usa portas diferentes do ambiente de desenvolvimento e projeto Compose próprio, com as imagens fixadas em [IMAGES.md](IMAGES.md):
 
 ```bash
