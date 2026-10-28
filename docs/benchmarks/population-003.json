@@ -1,0 +1,192 @@
+{
+  "experiment": "003",
+  "sourceLog": "/tmp/ballance-load-experiment-003.log",
+  "progress": [
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 251,
+      "elapsedMs": 4875.082156
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 501,
+      "elapsedMs": 10038.296793
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 751,
+      "elapsedMs": 15541.240199999998
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 1001,
+      "elapsedMs": 22093.200608
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 1251,
+      "elapsedMs": 29695.973953
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 1501,
+      "elapsedMs": 38039.162147
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 1751,
+      "elapsedMs": 47247.358919
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 2001,
+      "elapsedMs": 58138.374423
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 2251,
+      "elapsedMs": 70860.44262199999
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 2501,
+      "elapsedMs": 83338.10851899999
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 2751,
+      "elapsedMs": 97993.290621
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 3001,
+      "elapsedMs": 112080.65585099999
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 3251,
+      "elapsedMs": 127782.89108599999
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 3501,
+      "elapsedMs": 143589.46311799999
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 3751,
+      "elapsedMs": 161039.983002
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 4001,
+      "elapsedMs": 179423.852155
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 4251,
+      "elapsedMs": 198542.93579299998
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 4501,
+      "elapsedMs": 219461.622442
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 4751,
+      "elapsedMs": 240555.017974
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 5001,
+      "elapsedMs": 262680.196563
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 5251,
+      "elapsedMs": 285630.47672
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 5501,
+      "elapsedMs": 309719.030226
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 5751,
+      "elapsedMs": 334961.434433
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 6001,
+      "elapsedMs": 361468.835433
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 6251,
+      "elapsedMs": 388231.317592
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 6501,
+      "elapsedMs": 416187.485278
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 6751,
+      "elapsedMs": 444775.029591
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 7001,
+      "elapsedMs": 474652.256759
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 7251,
+      "elapsedMs": 505473.193706
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 7501,
+      "elapsedMs": 536831.53093
+    },
+    {
+      "label": "h10000-hot-http-off-r1",
+      "wallet": 1,
+      "entries": 7751,
+      "elapsedMs": 569889.971096
+    }
+  ]
+}

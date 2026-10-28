@@ -1,0 +1,70 @@
+# Overlay: docker compose -f compose.yaml -f compose.app.yaml ...
+x-runtime: &runtime
+  image: backend-ballance-experimental:local
+  init: true
+  environment: &environment
+    DB_HOST: postgres
+    DB_PORT: 5432
+    DB_NAME: ballance
+    DB_SCHEMA: financial
+    DB_USER: ballance_runtime
+    DB_PASSWORD: ${RUNTIME_DB_PASSWORD:?Set RUNTIME_DB_PASSWORD (at least 16 characters)}
+    SQS_ENDPOINT: http://localstack:4566
+    HTTP_HOST: 0.0.0.0
+  stop_grace_period: 45s
+  depends_on:
+    provision:
+      condition: service_completed_successfully
+    localstack:
+      condition: service_healthy
+services:
+  localstack:
+    environment:
+      SQS_ENDPOINT_STRATEGY: path
+    healthcheck:
+      test: [CMD-SHELL, "awslocal sqs get-queue-url --queue-name wager-events.fifo >/dev/null"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+  provision:
+    image: backend-ballance-experimental:local
+    build: .
+    command: [bun, dist/bootstrap/provision-runtime.js]
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_NAME: ballance
+      DB_USER: ballance
+      DB_PASSWORD: local-development-only
+      DB_SCHEMA: financial
+      RUNTIME_DB_USER: ballance_runtime
+      RUNTIME_DB_PASSWORD: ${RUNTIME_DB_PASSWORD:?Set RUNTIME_DB_PASSWORD}
+    depends_on:
+      postgres:
+        condition: service_healthy
+  api:
+    <<: *runtime
+    environment:
+      <<: *environment
+      FINANCIAL_API_ENABLED: 'true'
+      AUTH_MODE: local-development
+    ports:
+      - '127.0.0.1:${PORT:-3000}:3000'
+    healthcheck:
+      test: [CMD, bun, -e, "const r=await fetch('http://127.0.0.1:3000/health/ready');process.exit(r.ok?0:1)"]
+      interval: 5s
+      timeout: 8s
+      retries: 20
+  worker:
+    <<: *runtime
+    command: [bun, dist/bootstrap/workers.js]
+    environment:
+      <<: *environment
+      WORKER_MODE: all
+    ports:
+      - '127.0.0.1:${WORKER_METRICS_PORT:-9101}:9101'
+    healthcheck:
+      test: [CMD, bun, -e, "const r=await fetch('http://127.0.0.1:9101/health/ready');process.exit(r.ok?0:1)"]
+      interval: 5s
+      timeout: 8s
+      retries: 20

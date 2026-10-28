@@ -1,0 +1,3380 @@
+{
+  "kind": "exploratory-pilot",
+  "date": "2026-10-27",
+  "environment": {
+    "startedAt": "2026-10-27T10:14:26.155Z",
+    "bun": "1.4.4",
+    "platform": "linux",
+    "arch": "x64",
+    "cpu": "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz",
+    "logicalCpus": 8,
+    "totalMemoryBytes": 8154411008,
+    "sourceHashes": {
+      "src/application/financial-use-cases.ts": "625b5c612de1dac28462b0e68b810126a3763c25c1fc98a2f2d40a01497d8fc5",
+      "src/application/telemetry.ts": "a482717967f5843207eca99c4ee9da9b3e7c453f118ac9ff7ab188c43e0e820c",
+      "src/application/financial-queries.ts": "ff349c65938e0ff3f670176e8739b2fb552e28e044140714ac420f2af5ebbfd7",
+      "src/application/wager-request.ts": "092154047eea8a04256179ea456fe419cc67401ba089a7b9f7fdb68589f3e3a4",
+      "src/application/financial-ports.ts": "0c72eec05e0fc8a97c3c1febb9b4c51e21dd20894bf1f13585a2fe819d771123",
+      "src/interfaces/http/health.controller.ts": "dc8ccef068640221a32b41557b52b72859797c678a9d1c389dc39e6f31a69a6a",
+      "src/interfaces/http/financial-http.ts": "bfd07c8f061233dc46a220f703d89fe78007cdd63c80eefe16eaf8c0a1626a3c",
+      "src/interfaces/http/worker-observability.ts": "252816a82b0e936b3841d3d83d0d82d0af8848adef4aeb22836bf05e74a0729e",
+      "src/bootstrap/main.ts": "f3035ff0d929d68277177da2abadd2b259b768f9beeda923b1e723c26a397eb2",
+      "src/bootstrap/provision-runtime.ts": "680e69ef9a36c1a01428171ac68f25f4d887e51dd15bfa29894699b43ec5a6f9",
+      "src/bootstrap/workers.ts": "7b46e887e923a9fe45052f0df985cc612d270fef1351639a3590021847069e91",
+      "src/infrastructure/persistence/outbox-store.ts": "0e446297d7ac55eddc6ab151a2e51a88aa0f48f8af7f8c4a7770ed208fb45c9f",
+      "src/infrastructure/persistence/money-mapper.ts": "43550332870e1e52e1cf62c1b350935303a4cf7553955bbe18ff9ef48eb6a388",
+      "src/infrastructure/persistence/reference-store.ts": "ffcf665ea61ae779c47217795de12debd544f1a4cf16d0bacae17cae39815bef",
+      "src/infrastructure/persistence/mikro-financial-unit-of-work.ts": "4f2f0878271f332e0bb03aa86c242f6eefe7e6ed6c7b34d3c806fc86064f97e8",
+      "src/infrastructure/persistence/financial-services.ts": "6fb719457f160e27d2beea3224d16426ceddd2a0d658f1670a963cc268920d07",
+      "src/infrastructure/persistence/runtime-database-check.ts": "37d13ae2ea22847b18fb622ceb716da4252c935dfc2c0b3b8fba546faa02eaa3",
+      "src/infrastructure/persistence/financial-records.ts": "ab8b769dec5afa01dbe1319dd36c6e7547b5e632d37d5a2912c8bd52f1070e17",
+      "src/infrastructure/persistence/mikro-financial-queries.ts": "a0ac9df589019d69d03f0fb6941f5e55c4c9ed6840ab4aef917b934ff9388a3d",
+      "src/infrastructure/persistence/wallet-mapper.ts": "6739472445b986d5ed1555778ec53586229790a1512988360b7d5f95d9aaabb9",
+      "src/infrastructure/persistence/mikro-orm.config.ts": "0713919a4b7fa59c9b8af9500f3544391c11f756459c194dbac1decea988396f",
+      "src/infrastructure/persistence/runtime-grants.ts": "f2a291fcb007c2e3bc25b9fd106da691d7d17c275d9bdc97a5d9b3637fa623eb",
+      "src/infrastructure/persistence/financial-mappers.ts": "92d3924643373c5ad3aac29847936aa70b99aaca025ad5d9a1495f7f260b2cb0",
+      "src/infrastructure/persistence/migrations/Migration202610260003ReferenceJobs.ts": "58a4b02d568f564c4ff0688e7313d39658eb0df0953bbd6e3a4a05765ae25ce2",
+      "src/infrastructure/persistence/migrations/Migration202610260002BalanceLimit.ts": "e400abec2202b6aede131e67e7d51a0480b5c688dd6f15d248b02d060375d383",
+      "src/infrastructure/persistence/migrations/Migration202610260001FinancialSchema.ts": "9b4337b7cdc6dac2de7e4b7dda714587b32782cc048532d64f8f756288b46217",
+      "src/infrastructure/messaging/outbox-publisher.ts": "dbd434f75ccd554d6c1b82bc51b4514cc33736302e32592c5eee8e8e0acf6d62",
+      "src/infrastructure/messaging/reference-scheduler.ts": "13ce59ca28bb2c8577748b1ce24e98aa91a8a1b346721fbb497c5466991b4ef9",
+      "src/infrastructure/messaging/sqs-wager-consumer.ts": "df20ff22553da2e0852b1d33f3e4624cb12b2361d2a427e05f92ad10008c7b97",
+      "src/infrastructure/messaging/local-sqs.ts": "5d1a16d38972f0da44f59ef9d3b9fb011e690dc38afe84f7a23c4bf54a9236c4",
+      "src/infrastructure/observability/metrics-collector.ts": "810d018e972e4f6f5aa0204a4755cd57f18126656114ce53b30988927fea556c",
+      "src/infrastructure/observability/telemetry.ts": "bba14e9e77de86cf678214c6081db97820e911e2c2ce7e3b70c0c4941c70990d",
+      "src/domain/wager-transaction.ts": "5f6f0f1a5a3dc534187d46a9d266f06f71e8473ed157774920c0bd0e3e4fc735",
+      "src/domain/wallet-ledger-entry.ts": "5b9ac9e54338d0356fac9b7b06d01d3f964d00c663d9b47fdfd05b4e3f8dcdae",
+      "src/domain/money.ts": "d01f748ceba772a40f3b01e4951058ce307913a00751d89cb467664cc117e6a5",
+      "src/domain/domain-error.ts": "c5c89c9885525172184695f132c719919454a590c44663f93ebe88069741f36c",
+      "src/domain/wallet.ts": "95c7948ba407ad51df5851bb1a48dd0c36514697b36b9e8b459e231849dbfc48",
+      "src/domain/events/integration-event.ts": "2ff7b62c99012064d0e59da209f668b06d76cea644fa5f48c5b32027159f63d4",
+      "src/domain/events/wager-events.ts": "f44f686d86fe246e0673da6da1dc6a162e0a4605e74e6496ed1dc667e6d09033",
+      "scripts/load/child.ts": "3824150e189c7416b46f2258cb267ff9248b593d0c8bbb963636bbabbd0b5e85",
+      "scripts/load/run.ts": "4e843b5e9bb3f55d1027710f6d74b4fa2397a98262781ac974f54d93f57a6163",
+      "scripts/load/shared.ts": "99fc34c64e1873068e665cf2006b4b42b17b3871907668089d340fad2a77ff47",
+      "package.json": "80055806124c823d7e6249dd899a3eef68854a196f995268cef72b62b5bb0718",
+      "bun.lock": "11b2607bed62878b79db06e3dd86ee60f6a335c168cb8ab850e1ff0be1b78c9b",
+      "Dockerfile": "9a2af81af9bb5f752a76611dcaec61e6d147fa8f0cbf4551bda2c70560242020",
+      "compose.yaml": "8ca2dd599bab64aae6d14e05327e114d38bd621c63b5f27eabc39fd7d6dfe1e6",
+      "tsconfig.json": "40dd72174be8d2ff16fd9a5aa7e0baa03f37aa4440449fdb7d6d2f21671121a5",
+      "tests/support/financial-fixture.ts": "ad5b3336d3b0d59a4cf99a21db29efd8d7af0603b232c569a30604a10a66dac7"
+    },
+    "gitHead": "9e0206cdb2ecd30f69781b0e0416167acfea0c1c",
+    "worktreeDirty": true,
+    "dbHost": "127.0.0.1",
+    "dbPort": "35546",
+    "dbName": "ballance",
+    "sqsEndpoint": "http://127.0.0.1:34567",
+    "histories": [
+      100,
+      1000
+    ],
+    "requests": 120,
+    "concurrency": 6,
+    "processes": 3,
+    "walletCount": 3,
+    "scrapeMs": 100,
+    "repeats": 1,
+    "sourceImageReferences": [
+      "postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94",
+      "localstack/localstack:4.8.1@sha256:8c9756bddc44625cd6e890f5e4bcc29b045eebe108b268482b848f4f832ec153"
+    ],
+    "bunImage": "FROM oven/bun:1.4.4@sha256:1d22548f177f4ff38e0c15baa3c2c46c6c2060ba2d1bc573bb4720b407548f1d AS build"
+  },
+  "containerLimits": {
+    "memoryBytes": 0,
+    "nanoCpus": 0,
+    "meaning": "Docker containers without explicit CPU or memory limits; shared host"
+  },
+  "rawArtifacts": "/tmp/ballance-load-baseline-20261027",
+  "limitations": [
+    "one repetition",
+    "closed-loop, six outstanding requests",
+    "cache warmed by seeding and EXPLAIN",
+    "three combined API/consumer/publisher processes; no scheduler",
+    "synthetic BET-only workload",
+    "not a saturation test or production capacity estimate"
+  ],
+  "results": [
+    {
+      "label": "h100-hot-http-off-r1",
+      "history": 100,
+      "shape": "hot",
+      "transport": "http",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 2011.558767,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 3654.0642319999997,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 32.84014521395529,
+      "latencyMs": {
+        "count": 120,
+        "p50": 169.77523999999994,
+        "p95": 285.64007499999934,
+        "p99": 350.35281699999996,
+        "max": 369.4406120000003
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 137.0130449999997,
+        "p95": 247.33184499999993,
+        "p99": 317.4224639999993,
+        "max": 323.3796340000008
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 168.0132620000004,
+        "p95": 283.9344580000002,
+        "p99": 348.948257,
+        "max": 366.38054299999976
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.025287"
+      },
+      "drainMs": 27.360321000000113,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1658462,
+            "system": 110729
+          },
+          "rssBytes": 143745024
+        },
+        {
+          "cpuMicros": {
+            "user": 2161466,
+            "system": 98690
+          },
+          "rssBytes": 148033536
+        },
+        {
+          "cpuMicros": {
+            "user": 1946096,
+            "system": 124125
+          },
+          "rssBytes": 146644992
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 226,
+        "ledger": 226,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.612,
+          "executionMs": 0.104,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.646,
+          "executionMs": 0.069,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.157,
+          "executionMs": 0.223,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.055,
+          "executionMs": 0.086,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.324,
+          "executionMs": 0.114,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 200,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-hot-http-scrape-r1",
+      "history": 100,
+      "shape": "hot",
+      "transport": "http",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 1596.943937,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 4165.716961,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 28.80656586212075,
+      "latencyMs": {
+        "count": 120,
+        "p50": 197.09019099999932,
+        "p95": 356.7432979999994,
+        "p99": 375.49924199999987,
+        "max": 439.284638000001
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 158.39573399999972,
+        "p95": 306.461413,
+        "p99": 321.34317999999985,
+        "max": 380.5103210000002
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 195.19590900000003,
+        "p95": 354.60741899999994,
+        "p99": 374.01963799999976,
+        "max": 432.1770529999999
+      },
+      "scrapeMs": {
+        "count": 126,
+        "p50": 30.710972000000766,
+        "p95": 58.42080799999894,
+        "p99": 84.38019399999939,
+        "max": 103.65404599999965
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 4,
+        "lag": "0.068708"
+      },
+      "drainMs": 55.81687999999849,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2310773,
+            "system": 152861
+          },
+          "rssBytes": 154103808
+        },
+        {
+          "cpuMicros": {
+            "user": 2528855,
+            "system": 227249
+          },
+          "rssBytes": 144408576
+        },
+        {
+          "cpuMicros": {
+            "user": 2544990,
+            "system": 168169
+          },
+          "rssBytes": 143425536
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 226,
+        "ledger": 226,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.332,
+          "executionMs": 0.059,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.348,
+          "executionMs": 0.043,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.108,
+          "executionMs": 0.153,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.041,
+          "executionMs": 0.063,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.217,
+          "executionMs": 0.074,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 200,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-hot-sqs-off-r1",
+      "history": 100,
+      "shape": "hot",
+      "transport": "sqs",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 1425.1786699999975,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 6052.839380000001,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 19.82540630377672,
+      "latencyMs": {
+        "count": 120,
+        "p50": 279.1022039999989,
+        "p95": 461.32167200000185,
+        "p99": 524.7973600000005,
+        "max": 568.4162539999998
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 2.139103999999861,
+        "p95": 5.643903000000137,
+        "p99": 7.864028999999391,
+        "max": 7.9541360000002905
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 34.64831600000025,
+        "p95": 75.92253700000037,
+        "p99": 87.9839549999997,
+        "max": 88.44546900000023
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.072163"
+      },
+      "drainMs": 28.571845000002213,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2246931,
+            "system": 164396
+          },
+          "rssBytes": 139563008
+        },
+        {
+          "cpuMicros": {
+            "user": 2451259,
+            "system": 200528
+          },
+          "rssBytes": 137543680
+        },
+        {
+          "cpuMicros": {
+            "user": 2536875,
+            "system": 175374
+          },
+          "rssBytes": 137011200
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 226,
+        "ledger": 226,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.42,
+          "executionMs": 0.103,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.717,
+          "executionMs": 0.164,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.135,
+          "executionMs": 0.155,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.045,
+          "executionMs": 0.064,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.227,
+          "executionMs": 0.086,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 200,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-hot-sqs-scrape-r1",
+      "history": 100,
+      "shape": "hot",
+      "transport": "sqs",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 1383.3024990000013,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 5802.218929000002,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 20.681742876027897,
+      "latencyMs": {
+        "count": 120,
+        "p50": 282.22393600000214,
+        "p95": 374.07637799999793,
+        "p99": 396.4642659999954,
+        "max": 399.20000000000437
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 1.802693999999974,
+        "p95": 4.505309000000125,
+        "p99": 5.760123999999905,
+        "max": 6.124662000000171
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 35.64832799999931,
+        "p95": 59.4577220000001,
+        "p99": 67.36562100000015,
+        "max": 70.46097400000008
+      },
+      "scrapeMs": {
+        "count": 177,
+        "p50": 28.906724000000395,
+        "p95": 47.930693000002066,
+        "p99": 50.82615800000349,
+        "max": 51.14542900000379
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.039458"
+      },
+      "drainMs": 81.68513200000598,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2479095,
+            "system": 170950
+          },
+          "rssBytes": 149831680
+        },
+        {
+          "cpuMicros": {
+            "user": 2862051,
+            "system": 185147
+          },
+          "rssBytes": 149618688
+        },
+        {
+          "cpuMicros": {
+            "user": 2856889,
+            "system": 148753
+          },
+          "rssBytes": 149782528
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 226,
+        "ledger": 226,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.335,
+          "executionMs": 0.056,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.323,
+          "executionMs": 0.04,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.104,
+          "executionMs": 0.147,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 2,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.04,
+          "executionMs": 0.059,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 7,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.223,
+          "executionMs": 0.072,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 200,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 20,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-spread-http-off-r1",
+      "history": 100,
+      "shape": "spread",
+      "transport": "http",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 4077.8439699999944,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 2143.514028999998,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 55.982838636229005,
+      "latencyMs": {
+        "count": 120,
+        "p50": 96.54393600000185,
+        "p95": 177.38647100000526,
+        "p99": 195.66134000000602,
+        "max": 201.0236339999974
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 29.105820999999878,
+        "p95": 102.900709,
+        "p99": 117.05391400000008,
+        "max": 142.98196999999982
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 92.09025900000006,
+        "p95": 167.98527000000013,
+        "p99": 190.12650699999995,
+        "max": 193.37777099999994
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.024659"
+      },
+      "drainMs": 27.948632999999973,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1995600,
+            "system": 112087
+          },
+          "rssBytes": 156766208
+        },
+        {
+          "cpuMicros": {
+            "user": 2182424,
+            "system": 137730
+          },
+          "rssBytes": 146456576
+        },
+        {
+          "cpuMicros": {
+            "user": 2385022,
+            "system": 145896
+          },
+          "rssBytes": 155877376
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 426,
+        "ledger": 426,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.527,
+          "executionMs": 0.134,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 1.134,
+          "executionMs": 0.339,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.16,
+          "executionMs": 0.208,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.053,
+          "executionMs": 0.186,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 300,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.288,
+          "executionMs": 0.216,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 600,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-spread-http-scrape-r1",
+      "history": 100,
+      "shape": "spread",
+      "transport": "http",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 3764.281271,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 2308.882641999997,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 51.973191628334035,
+      "latencyMs": {
+        "count": 120,
+        "p50": 108.59584100000211,
+        "p95": 179.79125999999815,
+        "p99": 210.16018100000656,
+        "max": 226.9015470000013
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 36.10794399999986,
+        "p95": 105.12343099999998,
+        "p99": 134.64997099999982,
+        "max": 138.88278800000035
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 102.8135400000001,
+        "p95": 177.2333520000002,
+        "p99": 196.06961599999977,
+        "max": 223.6513799999998
+      },
+      "scrapeMs": {
+        "count": 63,
+        "p50": 74.73468900000444,
+        "p95": 148.86011199999484,
+        "p99": 158.72896900000342,
+        "max": 158.72896900000342
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.042433"
+      },
+      "drainMs": 28.340100000001257,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2191720,
+            "system": 150473
+          },
+          "rssBytes": 149499904
+        },
+        {
+          "cpuMicros": {
+            "user": 2342002,
+            "system": 161504
+          },
+          "rssBytes": 146960384
+        },
+        {
+          "cpuMicros": {
+            "user": 2678343,
+            "system": 191568
+          },
+          "rssBytes": 158744576
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 426,
+        "ledger": 426,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.693,
+          "executionMs": 0.164,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.421,
+          "executionMs": 0.081,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.137,
+          "executionMs": 0.178,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.044,
+          "executionMs": 0.139,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 300,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.251,
+          "executionMs": 0.183,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 600,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-spread-sqs-off-r1",
+      "history": 100,
+      "shape": "spread",
+      "transport": "sqs",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 4224.507534999997,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 3173.7184879999986,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 37.810536899768046,
+      "latencyMs": {
+        "count": 120,
+        "p50": 157.715503000014,
+        "p95": 226.02335399998992,
+        "p99": 251.76224399999774,
+        "max": 270.0166559999925
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 2.477084999999988,
+        "p95": 7.815424000000348,
+        "p99": 9.22852499999999,
+        "max": 9.242291000000023
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 46.215957000000344,
+        "p95": 73.04833100000042,
+        "p99": 85.19639800000027,
+        "max": 88.23327699999982
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.031344"
+      },
+      "drainMs": 26.592665999996825,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2152422,
+            "system": 153330
+          },
+          "rssBytes": 153018368
+        },
+        {
+          "cpuMicros": {
+            "user": 2306810,
+            "system": 175188
+          },
+          "rssBytes": 144142336
+        },
+        {
+          "cpuMicros": {
+            "user": 2465162,
+            "system": 158753
+          },
+          "rssBytes": 148819968
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 426,
+        "ledger": 426,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.335,
+          "executionMs": 0.075,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.346,
+          "executionMs": 0.073,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.101,
+          "executionMs": 0.169,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.034,
+          "executionMs": 0.127,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 300,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.208,
+          "executionMs": 0.173,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 600,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h100-spread-sqs-scrape-r1",
+      "history": 100,
+      "shape": "spread",
+      "transport": "sqs",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 3663.1797339999903,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 4047.4387339999957,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 29.648379601636766,
+      "latencyMs": {
+        "count": 120,
+        "p50": 198.10265499999514,
+        "p95": 322.1260970000003,
+        "p99": 357.1692900000053,
+        "max": 441.9076860000059
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 2.506140999999843,
+        "p95": 7.180808999999499,
+        "p99": 9.769356999999673,
+        "max": 12.258561999999984
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 50.42135899999994,
+        "p95": 88.37434100000019,
+        "p99": 106.74065800000017,
+        "max": 111.99439699999994
+      },
+      "scrapeMs": {
+        "count": 120,
+        "p50": 47.84955800000171,
+        "p95": 105.45126699999673,
+        "p99": 160.98670700000366,
+        "max": 163.10467600000266
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 0,
+        "lag": "0"
+      },
+      "drainMs": 1.0911179999966407,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2627023,
+            "system": 175375
+          },
+          "rssBytes": 151736320
+        },
+        {
+          "cpuMicros": {
+            "user": 2865618,
+            "system": 254952
+          },
+          "rssBytes": 154497024
+        },
+        {
+          "cpuMicros": {
+            "user": 3109598,
+            "system": 201479
+          },
+          "rssBytes": 150401024
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 426,
+        "ledger": 426,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.309,
+          "executionMs": 0.071,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.324,
+          "executionMs": 0.074,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.094,
+          "executionMs": 0.159,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 100,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 200,
+              "Shared Hit Blocks": 5,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.039,
+          "executionMs": 0.146,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 300,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 19,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.212,
+          "executionMs": 0.175,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 600,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 60,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-hot-http-off-r1",
+      "history": 1000,
+      "shape": "hot",
+      "transport": "http",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 19043.693597999998,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 4640.198199000006,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 25.860964306623977,
+      "latencyMs": {
+        "count": 120,
+        "p50": 213.16974500000651,
+        "p95": 371.41917400000966,
+        "p99": 395.066845999987,
+        "max": 398.21765000000596
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 172.9384650000011,
+        "p95": 321.9464250000001,
+        "p99": 336.86777899999925,
+        "max": 341.4736750000002
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 210.02120899999954,
+        "p95": 370.33786599999985,
+        "p99": 390.997703,
+        "max": 394.70242700000017
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 2,
+        "lag": "0.035030"
+      },
+      "drainMs": 55.22055699999328,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1297794,
+            "system": 79943
+          },
+          "rssBytes": 151404544
+        },
+        {
+          "cpuMicros": {
+            "user": 1309123,
+            "system": 70889
+          },
+          "rssBytes": 146726912
+        },
+        {
+          "cpuMicros": {
+            "user": 1397095,
+            "system": 101321
+          },
+          "rssBytes": 145526784
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 1126,
+        "ledger": 1126,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.311,
+          "executionMs": 0.321,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.327,
+          "executionMs": 0.28,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.096,
+          "executionMs": 1.204,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.045,
+          "executionMs": 0.398,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.3,
+          "executionMs": 1.114,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 2000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-hot-http-scrape-r1",
+      "history": 1000,
+      "shape": "hot",
+      "transport": "http",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 19313.875994999995,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 5491.624888999999,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 21.851456067286396,
+      "latencyMs": {
+        "count": 120,
+        "p50": 260.6018599999952,
+        "p95": 432.2492300000158,
+        "p99": 502.8171330000041,
+        "max": 518.5094099999988
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 214.24624099999892,
+        "p95": 371.2876589999996,
+        "p99": 428.9013989999994,
+        "max": 446.3328150000016
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 258.51807700000063,
+        "p95": 431.2582249999996,
+        "p99": 501.4825449999989,
+        "max": 503.7526630000002
+      },
+      "scrapeMs": {
+        "count": 165,
+        "p50": 23.38407600001665,
+        "p95": 41.55873600000632,
+        "p99": 125.85718500000075,
+        "max": 125.98894900002051
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 6,
+        "lag": "0.119012"
+      },
+      "drainMs": 29.588003000011668,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1792804,
+            "system": 134552
+          },
+          "rssBytes": 152805376
+        },
+        {
+          "cpuMicros": {
+            "user": 1886385,
+            "system": 135608
+          },
+          "rssBytes": 150048768
+        },
+        {
+          "cpuMicros": {
+            "user": 1873905,
+            "system": 130737
+          },
+          "rssBytes": 149311488
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 1126,
+        "ledger": 1126,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.466,
+          "executionMs": 0.384,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.408,
+          "executionMs": 0.373,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.146,
+          "executionMs": 2.089,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.419,
+          "executionMs": 1.036,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.84,
+          "executionMs": 0.769,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 43,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Index Only Scan",
+              "Relation Name": "outbox_messages",
+              "Index Name": "outbox_due",
+              "Actual Rows": 2000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 43,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-hot-sqs-off-r1",
+      "history": 1000,
+      "shape": "hot",
+      "transport": "sqs",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 18761.992262999993,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 6827.080337000021,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 17.577059896255857,
+      "latencyMs": {
+        "count": 120,
+        "p50": 320.31718799998634,
+        "p95": 462.21126099998946,
+        "p99": 484.1075530000089,
+        "max": 486.2545820000232
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 1.4721649999992223,
+        "p95": 4.6609819999994215,
+        "p99": 5.603962000001047,
+        "max": 6.760489999998754
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 46.416393999999855,
+        "p95": 71.54297800000131,
+        "p99": 82.21371200000067,
+        "max": 105.05799300000035
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 4,
+        "lag": "0.090754"
+      },
+      "drainMs": 83.30938799999421,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1635044,
+            "system": 129461
+          },
+          "rssBytes": 147472384
+        },
+        {
+          "cpuMicros": {
+            "user": 1619999,
+            "system": 182815
+          },
+          "rssBytes": 145379328
+        },
+        {
+          "cpuMicros": {
+            "user": 1789743,
+            "system": 143365
+          },
+          "rssBytes": 138518528
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 1126,
+        "ledger": 1126,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.315,
+          "executionMs": 0.32,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.338,
+          "executionMs": 0.284,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.107,
+          "executionMs": 1.082,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.035,
+          "executionMs": 0.401,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.207,
+          "executionMs": 0.548,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 2000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-hot-sqs-scrape-r1",
+      "history": 1000,
+      "shape": "hot",
+      "transport": "sqs",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 1,
+      "seedMs": 18842.016466,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 7436.049530000018,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 16.137600955436305,
+      "latencyMs": {
+        "count": 120,
+        "p50": 364.4545860000071,
+        "p95": 475.00637200000347,
+        "p99": 489.71836199998506,
+        "max": 490.93594799999846
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 1.6857970000000932,
+        "p95": 5.175277000000278,
+        "p99": 7.084548999999242,
+        "max": 7.526434000001245
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 52.349168000000645,
+        "p95": 74.83438600000045,
+        "p99": 91.16791999999987,
+        "max": 119.26967199999854
+      },
+      "scrapeMs": {
+        "count": 225,
+        "p50": 23.62094199997955,
+        "p95": 40.6394389999914,
+        "p99": 55.50209399999585,
+        "max": 58.23249300001771
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 0,
+        "lag": "0"
+      },
+      "drainMs": 0.9129210000101011,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2231700,
+            "system": 213257
+          },
+          "rssBytes": 154054656
+        },
+        {
+          "cpuMicros": {
+            "user": 2437771,
+            "system": 169942
+          },
+          "rssBytes": 151281664
+        },
+        {
+          "cpuMicros": {
+            "user": 2295195,
+            "system": 182064
+          },
+          "rssBytes": 152334336
+        }
+      ],
+      "audit": {
+        "walletsChecked": 1,
+        "transactions": 1126,
+        "ledger": 1126,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.443,
+          "executionMs": 0.335,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.288,
+          "executionMs": 0.305,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.111,
+          "executionMs": 1.07,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 16,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.039,
+          "executionMs": 0.402,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 63,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.207,
+          "executionMs": 0.55,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 2000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 200,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-spread-http-off-r1",
+      "history": 1000,
+      "shape": "spread",
+      "transport": "http",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 60446.45763799999,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 2665.521332000033,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 45.01933582724692,
+      "latencyMs": {
+        "count": 120,
+        "p50": 126.57443700003205,
+        "p95": 192.76675799995428,
+        "p99": 225.04357999999775,
+        "max": 256.95101799996337
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 51.69744300000093,
+        "p95": 109.43275100000028,
+        "p99": 137.48634899999888,
+        "max": 191.39401799999905
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 121.86132100000032,
+        "p95": 185.4668899999997,
+        "p99": 223.36002599999847,
+        "max": 254.13746100000208
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 4,
+        "lag": "0.066984"
+      },
+      "drainMs": 30.948595999972895,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1534925,
+            "system": 92119
+          },
+          "rssBytes": 161230848
+        },
+        {
+          "cpuMicros": {
+            "user": 1550276,
+            "system": 111569
+          },
+          "rssBytes": 155238400
+        },
+        {
+          "cpuMicros": {
+            "user": 1574735,
+            "system": 75544
+          },
+          "rssBytes": 159649792
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 3126,
+        "ledger": 3126,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.336,
+          "executionMs": 0.418,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.333,
+          "executionMs": 0.668,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.161,
+          "executionMs": 1.481,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.084,
+          "executionMs": 1.074,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 3000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.236,
+          "executionMs": 1.535,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 6000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-spread-http-scrape-r1",
+      "history": 1000,
+      "shape": "spread",
+      "transport": "http",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 61055.192495000025,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 3064.6718059999985,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 39.15590562260684,
+      "latencyMs": {
+        "count": 120,
+        "p50": 129.27077100001043,
+        "p95": 251.71433700004127,
+        "p99": 373.75774199998705,
+        "max": 397.60508000000846
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 44.88171800000055,
+        "p95": 162.14271599999847,
+        "p99": 233.45933199999854,
+        "max": 270.3532809999997
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 124.38177799999903,
+        "p95": 245.64099899999928,
+        "p99": 366.36111999999775,
+        "max": 393.8785250000001
+      },
+      "scrapeMs": {
+        "count": 93,
+        "p50": 43.407525999995414,
+        "p95": 111.74205099995015,
+        "p99": 124.44677699997555,
+        "max": 124.44677699997555
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 0,
+        "lag": "0"
+      },
+      "drainMs": 4.4149040000047535,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 1763633,
+            "system": 164237
+          },
+          "rssBytes": 161206272
+        },
+        {
+          "cpuMicros": {
+            "user": 1923213,
+            "system": 157031
+          },
+          "rssBytes": 154660864
+        },
+        {
+          "cpuMicros": {
+            "user": 2034967,
+            "system": 119657
+          },
+          "rssBytes": 161714176
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 3126,
+        "ledger": 3126,
+        "inbox": 0,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.311,
+          "executionMs": 0.418,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.327,
+          "executionMs": 0.602,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.121,
+          "executionMs": 1.178,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.037,
+          "executionMs": 1.067,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 3000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.222,
+          "executionMs": 1.449,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 6000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-spread-sqs-off-r1",
+      "history": 1000,
+      "shape": "spread",
+      "transport": "sqs",
+      "scrapes": false,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 68495.41493800003,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 5247.149693000014,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 22.86955909797782,
+      "latencyMs": {
+        "count": 120,
+        "p50": 256.2365780000109,
+        "p95": 362.4088500000071,
+        "p99": 394.3291099999915,
+        "max": 401.5421830000123
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 3.27516900000046,
+        "p95": 7.548151999999391,
+        "p99": 19.294966000001295,
+        "max": 23.61743900000147
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 97.16395099999863,
+        "p95": 154.16214700000273,
+        "p99": 177.6568690000022,
+        "max": 182.91551400000026
+      },
+      "scrapeMs": {
+        "count": 0,
+        "p50": null,
+        "p95": null,
+        "p99": null,
+        "max": null
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 6,
+        "lag": "0.106909"
+      },
+      "drainMs": 181.5684379999875,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2458088,
+            "system": 171296
+          },
+          "rssBytes": 143028224
+        },
+        {
+          "cpuMicros": {
+            "user": 2460069,
+            "system": 168030
+          },
+          "rssBytes": 144109568
+        },
+        {
+          "cpuMicros": {
+            "user": 2505686,
+            "system": 187141
+          },
+          "rssBytes": 155516928
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 3126,
+        "ledger": 3126,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.374,
+          "executionMs": 0.431,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.299,
+          "executionMs": 0.718,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.143,
+          "executionMs": 1.225,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.045,
+          "executionMs": 1.181,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 3000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.278,
+          "executionMs": 1.64,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "outbox_messages",
+              "Actual Rows": 6000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 0,
+              "Shared Hit Blocks": 600,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    },
+    {
+      "label": "h1000-spread-sqs-scrape-r1",
+      "history": 1000,
+      "shape": "spread",
+      "transport": "sqs",
+      "scrapes": true,
+      "repeat": 1,
+      "wallets": 3,
+      "seedMs": 79417.91603799997,
+      "warmup": 6,
+      "requests": 120,
+      "concurrency": 6,
+      "elapsedMs": 6210.08956699993,
+      "processed": 120,
+      "businessRejected": 0,
+      "technicalErrors": 0,
+      "throughput": 19.323392795761485,
+      "latencyMs": {
+        "count": 120,
+        "p50": 284.901564000058,
+        "p95": 585.1201760000549,
+        "p99": 717.1560469999677,
+        "max": 747.0927069999743
+      },
+      "lockWaitMs": {
+        "count": 120,
+        "p50": 3.017147999998997,
+        "p95": 17.038736999998946,
+        "p99": 22.384601999998267,
+        "max": 27.029613000002428
+      },
+      "processingMs": {
+        "count": 120,
+        "p50": 102.78774799999883,
+        "p95": 193.10375099999874,
+        "p99": 226.7221270000009,
+        "max": 259.59836200000063
+      },
+      "scrapeMs": {
+        "count": 177,
+        "p50": 55.57710799993947,
+        "p95": 127.08307099994272,
+        "p99": 170.42590599996038,
+        "max": 170.43015899998136
+      },
+      "scrapeErrors": 0,
+      "backlogAfterMeasurement": {
+        "pending": 8,
+        "lag": "0.145628"
+      },
+      "drainMs": 61.33616400009487,
+      "resources": [
+        {
+          "cpuMicros": {
+            "user": 2947733,
+            "system": 207855
+          },
+          "rssBytes": 146972672
+        },
+        {
+          "cpuMicros": {
+            "user": 2939345,
+            "system": 203518
+          },
+          "rssBytes": 149192704
+        },
+        {
+          "cpuMicros": {
+            "user": 2960012,
+            "system": 227252
+          },
+          "rssBytes": 145563648
+        }
+      ],
+      "audit": {
+        "walletsChecked": 3,
+        "transactions": 3126,
+        "ledger": 3126,
+        "inbox": 126,
+        "pending": 0,
+        "replay": true,
+        "consistent": true
+      },
+      "dbSettings": {
+        "version": "PostgreSQL 17.6 on x86_64-pc-linux-musl, compiled by gcc (Alpine 14.2.0) 14.2.0, 64-bit",
+        "shared_buffers": "128MB",
+        "max_connections": "100",
+        "synchronous_commit": "on",
+        "fsync": "on",
+        "autovacuum": "on"
+      },
+      "retryCount": 0.0,
+      "lockConflictCount": 0.0,
+      "planProbes": {
+        "ledger_sum": {
+          "planningMs": 0.409,
+          "executionMs": 0.573,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "transaction_wallet": {
+          "planningMs": 0.986,
+          "executionMs": 0.949,
+          "nodes": [
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "ledger_chain": {
+          "planningMs": 0.156,
+          "executionMs": 1.428,
+          "nodes": [
+            {
+              "Node Type": "WindowAgg",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Sort",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wallet_ledger",
+              "Actual Rows": 1000,
+              "Actual Loops": 1,
+              "Rows Removed by Filter": 2000,
+              "Shared Hit Blocks": 47,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "status_counts": {
+          "planningMs": 0.06,
+          "executionMs": 1.242,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Seq Scan",
+              "Relation Name": "wager_transactions",
+              "Actual Rows": 3000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 188,
+              "Shared Read Blocks": 0
+            }
+          ]
+        },
+        "outbox_pending": {
+          "planningMs": 0.272,
+          "executionMs": 1.295,
+          "nodes": [
+            {
+              "Node Type": "Aggregate",
+              "Actual Rows": 1,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 113,
+              "Shared Read Blocks": 0
+            },
+            {
+              "Node Type": "Index Only Scan",
+              "Relation Name": "outbox_messages",
+              "Index Name": "outbox_due",
+              "Actual Rows": 6000,
+              "Actual Loops": 1,
+              "Shared Hit Blocks": 113,
+              "Shared Read Blocks": 0
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

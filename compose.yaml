@@ -1,0 +1,28 @@
+name: backend-ballance
+services:
+  postgres:
+    image: postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    environment:
+      POSTGRES_USER: ballance
+      POSTGRES_PASSWORD: local-development-only
+      POSTGRES_DB: ballance
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5546}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ballance -d ballance"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  localstack:
+    image: localstack/localstack:4.8.1@sha256:8c9756bddc44625cd6e890f5e4bcc29b045eebe108b268482b848f4f832ec153
+    environment:
+      SERVICES: sqs
+      AWS_DEFAULT_REGION: us-east-1
+    ports:
+      - "127.0.0.1:${LOCALSTACK_PORT:-4567}:4566"
+    volumes:
+      - ./docker/localstack/init-queues.sh:/etc/localstack/init/ready.d/init-queues.sh:ro
+volumes:
+  pgdata:

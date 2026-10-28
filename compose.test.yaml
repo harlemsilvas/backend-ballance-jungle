@@ -1,0 +1,55 @@
+# Independent test stack. No host ports, application credentials or delivery volumes.
+services:
+  postgres:
+    image: postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    environment:
+      POSTGRES_USER: ballance
+      POSTGRES_PASSWORD: local-development-only
+      POSTGRES_DB: ballance
+      POSTGRES_INITDB_ARGS: --auth-host=scram-sha-256 --auth-local=trust
+    volumes:
+      - testdata:/var/lib/postgresql/data
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U ballance -d ballance']
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  localstack:
+    image: localstack/localstack:4.8.1@sha256:8c9756bddc44625cd6e890f5e4bcc29b045eebe108b268482b848f4f832ec153
+    # Loopback is intentional: the existing tests only permit local emulator targets.
+    network_mode: service:postgres
+    environment:
+      SERVICES: sqs
+      AWS_DEFAULT_REGION: us-east-1
+      SQS_ENDPOINT_STRATEGY: path
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test: [CMD-SHELL, 'awslocal sqs list-queues >/dev/null']
+      interval: 2s
+      timeout: 5s
+      retries: 60
+  tests:
+    build:
+      context: .
+      target: validation
+    network_mode: service:postgres
+    init: true
+    environment:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_USER: ballance
+      DB_PASSWORD: local-development-only
+      DB_NAME: ballance
+      DB_SCHEMA: public
+      SQS_ENDPOINT: http://127.0.0.1:4566
+      TEST_SQS_ENDPOINT: http://127.0.0.1:4566
+    depends_on:
+      postgres:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+    command: [sh, -ec, 'bun run typecheck && bun run build && bun test tests/unit tests/integration']
+volumes:
+  testdata:

@@ -1,0 +1,52 @@
+# Isolated resources, separate from the demonstration and functional tests.
+services:
+  load:
+    build:
+      context: .
+      target: validation
+    network_mode: service:postgres
+    init: true
+    user: '${LOCAL_UID:-1000}:${LOCAL_GID:-1000}'
+    environment:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 5432
+      DB_NAME: ballance
+      DB_USER: ballance
+      DB_PASSWORD: local-development-only
+      DB_SCHEMA: public
+      SQS_ENDPOINT: http://127.0.0.1:4566
+      TEST_SQS_ENDPOINT: http://127.0.0.1:4566
+      LOAD_CONFIRM: isolated
+      LOAD_PROFILE: ${LOAD_PROFILE:-default}
+      LOAD_HISTORIES: '${LOAD_HISTORIES:-20}'
+      LOAD_REQUESTS: '${LOAD_REQUESTS:-24}'
+      LOAD_REPEATS: '${LOAD_REPEATS:-2}'
+      LOAD_SHAPES: '${LOAD_SHAPES:-hot}'
+      LOAD_TRANSPORTS: '${LOAD_TRANSPORTS:-http}'
+      LOAD_SCRAPE_INTERVALS: '${LOAD_SCRAPE_INTERVALS:-5000}'
+      LOAD_SQL_PROBE_REPEATS: '${LOAD_SQL_PROBE_REPEATS:-2}'
+      LOAD_SEED_BUDGET_MS: '${LOAD_SEED_BUDGET_MS:-60000}'
+    volumes:
+      - ./load-results:/results
+    depends_on:
+      postgres:
+        condition: service_healthy
+      localstack:
+        condition: service_healthy
+    command: [sh, -ec, 'export LOAD_OUTPUT=/results/run-$$(cat /proc/sys/kernel/random/uuid); case "$$LOAD_PROFILE" in 3000) bun run test:load3000 ;; volume) bun run test:load:volume ;; default) bun run test:load ;; *) exit 1 ;; esac']
+  dashboard:
+    build:
+      context: .
+      target: validation
+    init: true
+    environment:
+      REPORT_HOST: 0.0.0.0
+      REPORT_PORT: 8080
+    ports:
+      - '127.0.0.1:${REPORT_PORT:-38080}:8080'
+    command: [bun, scripts/reports/serve.ts]
+    healthcheck:
+      test: [CMD, bun, -e, "process.exit((await fetch('http://127.0.0.1:8080/health')).ok?0:1)"]
+      interval: 3s
+      timeout: 3s
+      retries: 20

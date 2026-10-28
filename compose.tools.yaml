@@ -1,0 +1,11 @@
+services:
+  smoke:
+    build:
+      context: .
+      target: validation
+    network_mode: service:api
+    init: true
+    environment:
+      SMOKE_API_URL: http://127.0.0.1:3000
+      SQS_ENDPOINT: http://localstack:4566
+    command: [bun, scripts/smoke-delivery.ts]

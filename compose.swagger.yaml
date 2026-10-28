@@ -1,0 +1,8 @@
+# Optional local API image. Does not replace the production entrypoint.
+services:
+  api:
+    image: backend-ballance-local-swagger:local
+    build:
+      context: .
+      target: swagger
+    command: [bun, scripts/swagger/main.ts]

@@ -1,0 +1,707 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Backend Ballance — Swagger local experimental",
+    "version": "0.1.0",
+    "description": "Modo local sem autenticação real. POSTs criam dados sintéticos. Não usar como configuração de produção. Esta especificação é mantida manualmente e cobre a API financeira existente; os testes e contratos continuam a referência."
+  },
+  "servers": [
+    {
+      "url": "/",
+      "description": "Mesma API local que serve esta documentação"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Saúde"
+    },
+    {
+      "name": "Carteiras"
+    },
+    {
+      "name": "Transações"
+    },
+    {
+      "name": "Observabilidade"
+    }
+  ],
+  "paths": {
+    "/health/live": {
+      "get": {
+        "operationId": "get__health_live",
+        "tags": [
+          "Saúde"
+        ],
+        "summary": "Processo vivo",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Processo responde."
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "operationId": "get__health_ready",
+        "tags": [
+          "Saúde"
+        ],
+        "summary": "Dependências acessíveis",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Banco e SQS acessíveis."
+          },
+          "503": {
+            "description": "Dependência indisponível.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "operationId": "get__metrics",
+        "tags": [
+          "Observabilidade"
+        ],
+        "summary": "Métricas Prometheus",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Medidas locais/globais conforme o contrato; não é JSON.",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wallets": {
+      "post": {
+        "operationId": "post__wallets",
+        "tags": [
+          "Carteiras"
+        ],
+        "summary": "Criar carteira",
+        "description": "Use um novo playerId UUID por carteira. Duplicação jogador/moeda retorna 409. Abertura positiva cria crédito interno.",
+        "responses": {
+          "201": {
+            "description": "Criada. Copie id para as próximas chamadas.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Contrato inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Carteira duplicada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Infraestrutura transitória.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OpenWallet"
+              },
+              "example": {
+                "playerId": "5192f28f-5dc0-4d58-bdb2-814ad6a0f4a1",
+                "initialBalance": {
+                  "amount": "100.00",
+                  "currency": "BRL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wallets/{walletId}": {
+      "get": {
+        "operationId": "get__wallets_walletId",
+        "tags": [
+          "Carteiras"
+        ],
+        "summary": "Consultar carteira",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Saldo atual.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Wallet"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
+    },
+    "/wallets/{walletId}/ledger": {
+      "get": {
+        "operationId": "get__wallets_walletId_ledger",
+        "tags": [
+          "Carteiras"
+        ],
+        "summary": "Consultar ledger paginado",
+        "description": "Cursor deve ser devolvido como recebido; não é credencial.",
+        "responses": {
+          "200": {
+            "description": "Lançamentos e próximo cursor."
+          },
+          "400": {
+            "description": "Parâmetro inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carteira não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    },
+    "/wallets/{walletId}/reconciliation": {
+      "post": {
+        "operationId": "post__wallets_walletId_reconciliation",
+        "tags": [
+          "Carteiras"
+        ],
+        "summary": "Conferir saldo contra ledger",
+        "description": "HTTP 200 significa conferência concluída. consistent=false sinaliza divergência; não há reparo automático.",
+        "responses": {
+          "200": {
+            "description": "Comparação em snapshot consistente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Reconciliation"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carteira inexistente.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "walletId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
+    },
+    "/wagering/transactions": {
+      "post": {
+        "operationId": "post__wagering_transactions",
+        "tags": [
+          "Transações"
+        ],
+        "summary": "Submeter operação idempotente",
+        "description": "Copie walletId/playerId da carteira criada. Mesma chave e corpo normalizado retorna replay. Mesma chave com conteúdo alterado retorna 409. LOSS exige zero; demais tipos, valor positivo. OPENING é interno. Referências são validadas. Rejeição terminal não é reconsiderada no replay.",
+        "responses": {
+          "200": {
+            "description": "Processada ou replay processado.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Pendente; pode aguardar referência.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Contrato/header inválido.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Carteira inexistente antes da aceitação.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflito de identidade/idempotência.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Rejeição financeira persistida.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Result"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "FAILED ou falha interna; investigar corpo/estado."
+          },
+          "503": {
+            "description": "Falha transitória; repetir mesma chave/conteúdo com backoff.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "example": "swagger-local:bet-001"
+          },
+          {
+            "name": "X-Correlation-Id",
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WagerRequest"
+              },
+              "example": {
+                "providerId": "swagger-local",
+                "externalTransactionId": "bet-001",
+                "playerId": "5192f28f-5dc0-4d58-bdb2-814ad6a0f4a1",
+                "walletId": "00000000-0000-4000-8000-000000000001",
+                "roundId": "round-001",
+                "gameId": "study-game",
+                "kind": "BET",
+                "money": {
+                  "amount": "25.00",
+                  "currency": "BRL"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/wagering/transactions/{transactionId}": {
+      "get": {
+        "operationId": "get__wagering_transactions_transactionId",
+        "tags": [
+          "Transações"
+        ],
+        "summary": "Consultar por ID interno",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Operação encontrada, inclusive rejeitada."
+          },
+          "404": {
+            "description": "Não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "transactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ]
+      }
+    },
+    "/providers/{providerId}/wagering/transactions/{externalTransactionId}": {
+      "get": {
+        "operationId": "get__providers_providerId_wagering_transactions_externalTransactionId",
+        "tags": [
+          "Transações"
+        ],
+        "summary": "Consultar por identidade do provedor",
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "Operação encontrada."
+          },
+          "404": {
+            "description": "Não encontrada.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "providerId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "externalTransactionId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Money": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "amount",
+          "currency"
+        ],
+        "properties": {
+          "amount": {
+            "type": "string",
+            "pattern": "^(0|[1-9]\\d*)(\\.\\d{1,2})?$",
+            "example": "25.00",
+            "description": "Texto decimal exato; saída normalizada com duas casas. Sem arredondamento de excesso de escala."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "BRL"
+            ],
+            "example": "BRL"
+          }
+        }
+      },
+      "OpenWallet": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "playerId",
+          "initialBalance"
+        ],
+        "properties": {
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "initialBalance": {
+            "$ref": "#/components/schemas/Money"
+          }
+        }
+      },
+      "Wallet": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "balance": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "version": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      },
+      "WagerRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "providerId",
+          "externalTransactionId",
+          "playerId",
+          "walletId",
+          "roundId",
+          "gameId",
+          "kind",
+          "money"
+        ],
+        "properties": {
+          "providerId": {
+            "type": "string"
+          },
+          "externalTransactionId": {
+            "type": "string"
+          },
+          "roundId": {
+            "type": "string"
+          },
+          "gameId": {
+            "type": "string"
+          },
+          "referenceExternalTransactionId": {
+            "type": "string",
+            "description": "Obrigatória para REFUND/ROLLBACK, opcional para WIN, proibida nos demais tipos. Valor de reversão deve ser integral."
+          },
+          "playerId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "walletId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "BET",
+              "WIN",
+              "LOSS",
+              "REFUND",
+              "ROLLBACK"
+            ]
+          },
+          "money": {
+            "$ref": "#/components/schemas/Money"
+          }
+        }
+      },
+      "Result": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "PENDING_REFERENCE",
+              "PROCESSED",
+              "REJECTED",
+              "FAILED"
+            ]
+          },
+          "balance": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "failureCode": {
+            "type": "string",
+            "example": "INSUFFICIENT_FUNDS"
+          },
+          "idempotentReplay": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "correlationId": {
+            "type": "string"
+          }
+        }
+      },
+      "Reconciliation": {
+        "type": "object",
+        "properties": {
+          "walletId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "storedBalance": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "calculatedBalance": {
+            "$ref": "#/components/schemas/Money"
+          },
+          "difference": {
+            "type": "object",
+            "description": "Money interno com sinal permitido; diferença = saldo armazenado - calculado.",
+            "properties": {
+              "amount": {
+                "type": "string",
+                "example": "0.00"
+              },
+              "currency": {
+                "type": "string",
+                "example": "BRL"
+              }
+            }
+          },
+          "consistent": {
+            "type": "boolean"
+          },
+          "checkedEntries": {
+            "type": "integer"
+          }
+        }
+      }
+    }
+  }
+}
