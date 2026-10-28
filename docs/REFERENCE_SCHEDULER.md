@@ -77,7 +77,7 @@ Dez testes focados: migration up/down/up; ignorar futuras; processar vencida; do
 
 ## Custos e limites
 
-Descoberta percorre pendências e verificação financeira reconstrói histórico da wallet; não há benchmark de throughput. Jobs concluídos são retidos, sem política de limpeza automática nesta versão. Leases são coordenação; consistência financeira permanece no caso de uso/schema. Não foi aplicada migration ao public nem criado runtime persistente nesta etapa.
+Descoberta percorre pendências e verificação financeira reconstrói histórico da wallet; as medições exploratórias da entrega estão em [LOAD_RESULTS_INDEX.md](LOAD_RESULTS_INDEX.md), mas não incluem referências pendentes e não medem a capacidade deste scheduler. Jobs concluídos são retidos, sem política de limpeza automática nesta versão. Leases são coordenação; consistência financeira permanece no caso de uso/schema. Na etapa histórica do scheduler não foi aplicada migration ao public nem criado runtime persistente. A entrega atual possui provisionamento e runtime persistente descritos no [README](../README.md).
 
 Logs/métricas: [OBSERVABILITY.md](OBSERVABILITY.md). Mensageria: [MESSAGING.md](MESSAGING.md).
 

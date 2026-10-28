@@ -56,7 +56,7 @@ Isso permite escrever wallet, transação e ledger em ordens compatíveis na mes
 
 Triggers de INSERT/UPDATE em transação/ledger adquirem lock da wallet; o verificador final também trava a wallet. Não há lock global. O caso de uso implementado adquire a wallet antes de escrever/reservar a transação, mantendo essa ordem em HTTP e workers. Esta decisão substitui a sequência inicial que sugeria reservar identidade antes do lock.
 
-O verificador faz agregação e janela sobre o histórico da wallet a cada disparo; prioriza correção e transparência, com custo crescente por wallet. Ainda não há benchmark ou prova de latência/throughput. Antes de otimizar, medir; qualquer substituição deve manter garantias verificáveis. Deadlocks ainda podem ocorrer em SQL fora da ordem recomendada: PostgreSQL aborta uma transação e o serviço implementa retry limitado. Os testes SQL desta etapa isoladamente não demonstram concorrência; as provas multiprocesso posteriores estão em FINANCIAL_PROCESSING.md.
+O verificador faz agregação e janela sobre o histórico da wallet a cada disparo; prioriza correção e transparência, com custo crescente por wallet. Há medições exploratórias em [LOAD_RESULTS_INDEX.md](LOAD_RESULTS_INDEX.md) e um comparativo recebido da VPS no [registro da entrega](VALIDACAO_CANDIDATA.md); elas não estabelecem capacidade de produção. Antes de otimizar, comparar sob protocolo controlado; qualquer substituição deve manter garantias verificáveis. Deadlocks ainda podem ocorrer em SQL fora da ordem recomendada: PostgreSQL aborta uma transação e o serviço implementa retry limitado. Os testes SQL desta etapa isoladamente não demonstram concorrência; as provas multiprocesso posteriores estão em FINANCIAL_PROCESSING.md.
 
 ## Imutabilidade e permissões
 

@@ -2,6 +2,8 @@
 
 Revisão documental em **28/10/2026**. Este documento descreve a solução implementada e as interpretações adotadas para os pontos deixados em aberto pelo [enunciado](CHALLENGE.md). Setup no [README](../README.md), desenho em [ARCHITECTURE.md](../ARCHITECTURE.md) e evidências históricas em PROJECT_STATUS.md (material complementar do repositório de desenvolvimento).
 
+**Estado desta entrega:** inclui runner, Swagger local e painel de relatórios. A validação da pasta publicada teve **215 testes/857 assertions**, zero falhas, typecheck/build e smoke aprovados; consulte o [registro](VALIDACAO_CANDIDATA.md). Os números abaixo referem-se a edições anteriores.
+
 O repositório completo teve validação registrada de **205 testes/819 assertions**. O pacote essencial exclui os dois controles específicos do runner de carga e teve **203 testes/799 assertions**, além de typecheck, build, smoke e stop/up aprovados. Esses números são registros anteriores; a revisão deste documento não executou novamente as suítes.
 
 ## Interpretações de negócio adotadas
@@ -99,7 +101,7 @@ Se o processo morrer depois de publicar e antes de marcar publishedAt, outra ins
 
 ## 10. Escopo de entrega
 
-**Solução entregue:** requisitos obrigatórios e runtime local concluídos. Autenticação externa permanece somente documentada, conforme permitido pelo desafio e decidido pelo usuário. Dashboard, OTel e contabilidade de partidas dobradas não foram implementados. O ledger entregue contém débitos/créditos por wallet. O runner exploratório de carga foi implementado separadamente; não integra o runtime de produção nem o pacote essencial.
+**Solução entregue:** requisitos obrigatórios e runtime local concluídos. Autenticação externa permanece somente documentada, conforme permitido pelo desafio e decidido pelo usuário. Esta edição inclui Swagger local, runner exploratório e painel de relatórios históricos/importados. Não há OpenTelemetry, dashboard operacional ao vivo ou contabilidade de partidas dobradas. O ledger entregue contém débitos/créditos por wallet. Runner e visualização são opcionais e não integram o runtime financeiro de produção. A edição essencial anterior excluía esses recursos; essa exclusão não se aplica ao conteúdo deste repositório.
 
 **Evidência e limite:** há testes de correção entre processos e medições exploratórias locais, sem demonstração de capacidade de produção ou alta disponibilidade. PROJECT_STATUS.md (material complementar do repositório de desenvolvimento) registra a execução. A seção 18 consolida os experimentos e a entrega reproduzível.
 

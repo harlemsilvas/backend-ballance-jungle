@@ -6,6 +6,8 @@ Implementação do [desafio](docs/CHALLENGE.md) em Bun/TypeScript strict, NestJS
 
 `src/domain` não depende de NestJS/ORM. Construtores privados e factories controlam criação e reconstrução. `rehydrate` recupera estado salvo sem reaplicar movimentos. Money usa decimal.js, entrada/saída string e operações exatas. PostgreSQL numeric sem typmod, CHECK de escala e limite rejeitam excesso de casas sem arredondamento. Nunca se converte dinheiro para number. Ledger é imutável; a carteira controla débito/crédito e versão.
 
+Inbox e outbox usam registros persistentes, operações da sessão transacional e stores especializados; não há classes de domínio dedicadas `InboxMessage`/`OutboxMessage`. Unicidade, identidade e transições persistidas são protegidas pelo SQL; claims e leases são coordenados pelos stores. Essa adaptação preserva as garantias operacionais testadas, mas distribui a leitura dessas regras entre aplicação e persistência, em vez de uniformizar todas as entidades em factories de domínio.
+
 Abertura positiva cria OPENING interno e crédito; abertura zero não cria lançamento. A versão inicia em 1 e aumenta somente com mudança de saldo. LOSS, rejeição e replay não alteram saldo/versão. [Schema](docs/FINANCIAL_SCHEMA.md).
 
 ## Atomicidade, concorrência e replay
@@ -18,7 +20,7 @@ Replays devolvem o resultado histórico persistido, mesmo depois de outras opera
 
 ## Mensageria e recuperação
 
-Consumer HTTP/SQS reutiliza o mesmo caso de uso. Ack após commit; rejeições auditadas recebem ack; falhas transitórias permitem redelivery; inválidos/esgotados vão para DLQ antes de remover a origem. Inbox é persistente por consumidor/messageId.
+As entradas HTTP e SQS reutilizam o mesmo caso de uso. Ack após commit; rejeições auditadas recebem ack; falhas transitórias permitem redelivery; inválidos/esgotados vão para DLQ antes de remover a origem. Inbox é persistente por consumidor/messageId.
 
 Publisher reserva outbox com SKIP LOCKED e lease/token, publica fora da transação financeira e só marca após confirmação. Queda após envio pode duplicar o mesmo eventId; consumidores downstream devem deduplicar. Não há promessa de exactly-once nem ordenação de publicação por versão da wallet entre publishers. [Mensageria](docs/MESSAGING.md).
 
@@ -34,4 +36,8 @@ Dockerfile multi-stage, dependências exatas/bun.lock e imagens por digest. Prov
 
 Os testes usam PostgreSQL/SQS reais e schemas/filas exclusivos, incluindo SQL adversarial, cinquenta repetições, três processos independentes e crashes em janelas controladas. O Compose de testes possui infraestrutura própria, sem portas do host e sem o volume da demonstração.
 
-Autenticação IdP está [somente documentada](docs/AUTHENTICATION.md), conforme permitido pelo desafio. O modo local é explícito e recusado para API financeira em NODE_ENV=production. Não há JWT/OIDC implementado, OTel ou dashboard. As verificações SQL percorrem o histórico: há custo crescente por carteira; não se anuncia capacidade de produção. Benchmarks exploratórios e planos internos ficam no repositório de desenvolvimento e não integram este pacote essencial.
+Autenticação IdP está [somente documentada](docs/AUTHENTICATION.md), conforme permitido pelo desafio. O modo local é explícito e recusado para API financeira em NODE_ENV=production. Não há JWT/OIDC nem OpenTelemetry implementados.
+
+Esta entrega inclui **Swagger local**, **painel de relatórios de carga** e runner exploratório, com scripts e instruções no [README](README.md). O painel apresenta dados históricos/importados com filtros e gráficos; não é monitoramento operacional ao vivo. [Resultados históricos](docs/LOAD_RESULTS_INDEX.md), [comparativo recebido da VPS](docs/benchmarks/summary-volume-vps.json) e [validação desta entrega](docs/VALIDACAO_CANDIDATA.md) identificam seus próprios ambientes. A versão essencial anterior não incluía esses recursos; essa descrição histórica não define o conteúdo deste repositório.
+
+As verificações SQL percorrem o histórico: há custo crescente por carteira e maior duração da transação sob lock. Adicionar instâncias não elimina a serialização da mesma wallet nem esse custo. As medições exploratórias não estabelecem capacidade de produção, saturação ou número de usuários suportados. O [plano de melhorias](docs/LOAD_IMPROVEMENT_PLAN.md) é uma proposta, sem otimizações de índices/triggers aplicadas por esta revisão.

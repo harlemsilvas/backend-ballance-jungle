@@ -115,7 +115,7 @@ Execução final: 180 testes, zero falhas, 680 assertions em 12 arquivos. São 1
 
 ## Iniciar workers de desenvolvimento após provisionamento
 
-Requer as mesmas DB_* restritas e duas migrations da API, SQS_ENDPOINT local e filas existentes. O comando não aplica migration nem cria papel/fila. O endpoint local é validado; não há configuração AWS de produção nesta etapa.
+Requer as mesmas DB_* restritas e as três migrations da entrega atual (schema financeiro, taxonomia/limite de saldo e jobs de referência), SQS_ENDPOINT local e filas existentes. O comando não aplica migration nem cria papel/fila. O endpoint local é validado; não há configuração AWS de produção nesta etapa.
 
 ```bash
 bun run build

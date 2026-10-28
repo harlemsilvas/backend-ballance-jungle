@@ -1,6 +1,6 @@
-# Estratégia de testes — edição experimental
+# Estratégia de testes — entrega para avaliação
 
-Inclui a suíte financeira e os controles do runner de carga. Consulte [EXPERIMENTAL_DELIVERY.md](EXPERIMENTAL_DELIVERY.md) para escopo e validação desta edição. Os relatórios históricos não são medições desta montagem.
+Inclui a suíte financeira e os controles do runner de carga. Consulte o [registro de validação desta entrega](VALIDACAO_CANDIDATA.md) e o [README](../README.md) para executar a suíte isolada com `sh entrega.sh test`. Os relatórios históricos não são medições desta montagem.
 
 ## Unidade
 
@@ -44,7 +44,7 @@ Scheduler: [REFERENCE_SCHEDULER.md](REFERENCE_SCHEDULER.md). Telemetria: [OBSERV
 
 ## Runner de medição e interrupção
 
-LOAD_TESTS.md descreve o runner opcional test:load. Ele não é disparado por bun test; a suíte inclui somente um teste curto de interrupção controlada, em tests/integration/load-runner.test.ts, que comprova encerramento e limpeza dos recursos exclusivos sem remover um schema de controle. Benchmark não substitui a suíte financeira.
+LOAD_TESTS.md descreve o runner opcional test:load. Ele não é disparado por bun test; a suíte inclui dois testes de controle operacional em tests/integration/load-runner.test.ts: interrupção com encerramento/limpeza dos recursos exclusivos e preservação de um schema de controle; e limite de população com auditoria do progresso parcial. Benchmark não substitui a suíte financeira.
 
 
 ## Experimentos 002/003
