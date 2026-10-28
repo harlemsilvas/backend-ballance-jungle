@@ -85,6 +85,6 @@ bun run typecheck
 bun run build
 ```
 
-Esses testes são unitários e dispensam Docker. O guia de todos os testes está em MANUAL_TESTS.md (material complementar do repositório de desenvolvimento).
+Esses testes são unitários e dispensam Docker. Os comandos para executar a suíte estão no [README](../README.md#testes), e o escopo está em [TEST_STRATEGY.md](TEST_STRATEGY.md).
 
 TransportHash do envelope SQS e inbox atômica: [MESSAGING.md](MESSAGING.md).

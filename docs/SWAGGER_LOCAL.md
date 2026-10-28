@@ -29,7 +29,7 @@ Portas padrão:
 
 Se a porta da API foi alterada no `.env`, ajuste essas URLs. O Swagger usa a mesma origem da API, sem habilitar CORS globalmente. O “Try it out” envia requisições reais e POSTs criam dados sintéticos na demonstração; não é uma simulação.
 
-## Roteiro de estudo
+## Exemplos de uso
 
 1. Abra `GET /health/live`, clique **Try it out** e depois **Execute**: espere HTTP 200.
 2. Em `POST /wallets`, use um playerId UUID novo e saldo `"100.00"`. Execute e copie o `id` da resposta.

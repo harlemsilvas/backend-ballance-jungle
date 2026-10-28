@@ -22,4 +22,4 @@ A resolução consultou auth.docker.io/registry-1.docker.io com autorização p�
 
 A [documentação oficial do Docker](https://docs.docker.com/build/building/best-practices/#pin-base-image-versions) explica que tags podem mudar e que digest fixa conteúdo. A contrapartida é que correções upstream deixam de entrar automaticamente: é necessário revisar periodicamente avisos de segurança e propor atualizações explícitas. Não foi configurado robô de atualização nem scanner de vulnerabilidades neste pacote.
 
-O build da aplicação continua dependendo de package.json/bun.lock e da disponibilidade dos registries; pinning das imagens não promete build binariamente idêntico, operação offline ou durabilidade das filas locais. [Setup](../README.md), limites e validação (material complementar do repositório de desenvolvimento).
+O build da aplicação continua dependendo de package.json/bun.lock e da disponibilidade dos registries; pinning das imagens não promete build binariamente idêntico, operação offline ou durabilidade das filas locais. [Setup e limites](../README.md) e [registro de validação](VALIDACAO_CANDIDATA.md).

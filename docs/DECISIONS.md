@@ -1,6 +1,6 @@
 # Decisões de negócio e engenharia — solução implementada
 
-Revisão documental em **28/10/2026**. Este documento descreve a solução implementada e as interpretações adotadas para os pontos deixados em aberto pelo [enunciado](CHALLENGE.md). Setup no [README](../README.md), desenho em [ARCHITECTURE.md](../ARCHITECTURE.md) e evidências históricas em PROJECT_STATUS.md (material complementar do repositório de desenvolvimento).
+Revisão documental em **28/10/2026**. Este documento descreve a solução implementada e as interpretações adotadas para os pontos deixados em aberto pelo [enunciado](CHALLENGE.md). Setup no [README](../README.md), desenho em [ARCHITECTURE.md](../ARCHITECTURE.md) e evidências no [registro de validação](VALIDACAO_CANDIDATA.md).
 
 **Estado desta entrega:** inclui runner, Swagger local e painel de relatórios. A validação da pasta publicada teve **215 testes/857 assertions**, zero falhas, typecheck/build e smoke aprovados; consulte o [registro](VALIDACAO_CANDIDATA.md). Os números abaixo referem-se a edições anteriores.
 
@@ -28,7 +28,7 @@ Saldo nunca negativo, reversão integral, identidade da referência, estados ter
 
 **Decisão implementada:** domínio com testes unitários desde o início; infraestrutura com PostgreSQL e LocalStack reais. Evita descobrir erros de escala, aritmética ou transição somente depois de conectar os workers. Mocks não provariam locks, constraints nem redrive do broker.
 
-**Evidência:** Money, Wallet, ledger e WagerTransaction testados; suíte de infraestrutura com rollback e DLQ reais no emulador. **Limite:** unidade/infraestrutura não substituem concorrência real. A suíte financeira também inclui três processos Bun independentes e barreira de início; mensageria inclui processos mortos em janelas controladas. Comandos em MANUAL_TESTS.md (material complementar do repositório de desenvolvimento).
+**Evidência:** Money, Wallet, ledger e WagerTransaction testados; suíte de infraestrutura com rollback e DLQ reais no emulador. **Limite:** unidade/infraestrutura não substituem concorrência real. A suíte financeira também inclui três processos Bun independentes e barreira de início; mensageria inclui processos mortos em janelas controladas. Comandos no [README](../README.md#testes).
 
 ## 2. Money é um valor exato e imutável
 
@@ -103,7 +103,7 @@ Se o processo morrer depois de publicar e antes de marcar publishedAt, outra ins
 
 **Solução entregue:** requisitos obrigatórios e runtime local concluídos. Autenticação externa permanece somente documentada, conforme permitido pelo desafio e decidido pelo usuário. Esta edição inclui Swagger local, runner exploratório e painel de relatórios históricos/importados. Não há OpenTelemetry, dashboard operacional ao vivo ou contabilidade de partidas dobradas. O ledger entregue contém débitos/créditos por wallet. Runner e visualização são opcionais e não integram o runtime financeiro de produção. A edição essencial anterior excluía esses recursos; essa exclusão não se aplica ao conteúdo deste repositório.
 
-**Evidência e limite:** há testes de correção entre processos e medições exploratórias locais, sem demonstração de capacidade de produção ou alta disponibilidade. PROJECT_STATUS.md (material complementar do repositório de desenvolvimento) registra a execução. A seção 18 consolida os experimentos e a entrega reproduzível.
+**Evidência e limite:** há testes de correção entre processos e medições exploratórias locais, sem demonstração de capacidade de produção ou alta disponibilidade. O [registro de validação](VALIDACAO_CANDIDATA.md) descreve a execução desta entrega. A seção 18 consolida os experimentos e a entrega reproduzível.
 
 
 ## 11. Eventos como snapshots e hash como contrato estável
@@ -196,8 +196,8 @@ Se o processo morrer depois de publicar e antes de marcar publishedAt, outra ins
 
 **Decisão posterior aos testes:** registrar propostas no [plano de melhorias](LOAD_IMPROVEMENT_PLAN.md), sem aplicar automaticamente índice, alteração de trigger, cache ou particionamento. O custo das verificações sobre o histórico é conhecido; a medição não justifica anunciar um limite universal nem capacidade de produção.
 
-**Runtime entregue:** Dockerfile multi-stage, Bun/dependências exatos e imagens de origem fixadas por tag/digest. Compose separa provisionador administrativo de API/worker restritos. O volume PostgreSQL preserva o estado financeiro em stop/up; persistência de mensagens após recriação do LocalStack não foi comprovada. [Imagens](IMAGES.md) e validação do runtime (material complementar do repositório de desenvolvimento).
+**Runtime entregue:** Dockerfile multi-stage, Bun/dependências exatos e imagens de origem fixadas por tag/digest. Compose separa provisionador administrativo de API/worker restritos. O volume PostgreSQL preserva o estado financeiro em stop/up; persistência de mensagens após recriação do LocalStack não foi comprovada. [Imagens](IMAGES.md) e [validação do runtime](VALIDACAO_CANDIDATA.md).
 
-**Pacote essencial:** gerador (material complementar do repositório de desenvolvimento) e templates (material complementar do repositório de desenvolvimento) produzem pasta/ZIP sem estudos, credenciais ou dependências instaladas. A infraestrutura de testes é independente da demonstração; seu PostgreSQL exige SCRAM nas conexões de rede. O destinatário precisa de Docker/Compose e internet no primeiro build, sem Bun/Node no host. O pacote não é instalador offline nem configuração de produção.
+**Execução desta entrega:** clone o repositório e siga o [README](../README.md). Os scripts distribuídos preparam a aplicação e os testes em containers; o .env privado é gerado localmente e não é versionado. A infraestrutura de testes é independente da demonstração; seu PostgreSQL exige SCRAM nas conexões de rede. O destinatário precisa de Docker/Compose e internet no primeiro build, sem Bun/Node no host. O pacote não é instalador offline nem configuração de produção.
 
-**Evidência:** suíte essencial de 203 testes aprovada, smoke HTTP/replay/SQS/publicação/reconciliação/métricas e stop/up com saldo 85.00 BRL preservado. Registro da edição essencial (material complementar do repositório de desenvolvimento). A suíte ampliada do repositório tem 205 testes, incluindo dois controles adicionais do runner de carga. Esses resultados anteriores não foram repetidos nesta revisão documental.
+**Evidência:** suíte essencial de 203 testes aprovada, smoke HTTP/replay/SQS/publicação/reconciliação/métricas e stop/up com saldo 85.00 BRL preservado. Esses são resultados históricos da edição essencial. Uma suíte ampliada anterior registrou 205 testes, incluindo dois controles adicionais do runner de carga. A validação desta entrega está no [registro atual](VALIDACAO_CANDIDATA.md). Esses resultados anteriores não foram repetidos nesta revisão documental.

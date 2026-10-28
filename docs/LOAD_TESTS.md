@@ -1,6 +1,6 @@
 # Medição exploratória de histórico, locks e coleta
 
-O runner `bun run test:load` implementa o primeiro experimento do pacote 2 de PLANO_CORRECOES.md (material complementar do repositório de desenvolvimento), com respaldo na seção 14 do [enunciado](CHALLENGE.md). Ele exercita código existente sem modificar domínio, casos de uso, adaptadores, migrations ou constraints. Não é executado por `bun test` nem pelo build de produção.
+O runner `bun run test:load` executa medições exploratórias de histórico, concorrência e coleta de métricas, conforme o diferencial opcional da seção 14 do [enunciado](CHALLENGE.md). Ele exercita código existente sem modificar domínio, casos de uso, adaptadores, migrations ou constraints. Não é executado por `bun test` nem pelo build de produção.
 
 ## Preparação e execução
 

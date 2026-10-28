@@ -64,7 +64,7 @@ curl --fail --silent --show-error http://127.0.0.1:9101/health/ready
 
 Os curls operacionais exigem os serviços configurados/iniciados. Nos testes, listeners usam portas livres e são encerrados no finally.
 
-## Exemplos PromQL para estudo
+## Exemplos de consultas PromQL
 
 Prometheus/dashboard não foram instalados nesta etapa; exemplos de consulta, não benchmark executado:
 

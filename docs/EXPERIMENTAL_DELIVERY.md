@@ -58,7 +58,7 @@ Swagger validado por HTTP e Chrome: dez caminhos, Try it out em health/live, cri
 Regressão após adicionar Swagger local: **212 testes aprovados, zero falhas, 844 assertions em 20 arquivos**, com typecheck/build, em 46,15s na suíte. É evidência funcional da edição; não mede desempenho do Swagger nem capacidade da aplicação.
 
 
-## Perfis para estudo de volume — configuração preparada
+## Perfis de comparação de volume — configuração preparada
 
 Adicionados `test:load3000` e `test:load:volume`, com equivalentes Docker `experimento.sh load3000`/`load-volume`. O comparativo usa históricos 100/1.000/3.000 no mesmo protocolo (hot/HTTP, 120 comandos, três processos, concorrência seis, duas repetições, off/5s), com orçamento de população por caso de 180s. `--describe` não abre recursos. Testes verificam conflitos de histórico, orçamento obrigatório e defaults, sem alterar dinheiro/locks/constraints.
 
