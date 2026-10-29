@@ -35,7 +35,7 @@ sequenceDiagram
   participant C as Consumidor
   participant DB as PostgreSQL
   Q->>C: mensagem e ReceiptHandle
-  C->>DB: BEGIN; reservar/travar inbox
+  C->>DB: BEGIN, reservar/travar inbox
   C->>DB: caso de uso e lock da wallet
   C->>DB: wallet + transação + ledger + outbox + inbox processada
   C->>DB: COMMIT
