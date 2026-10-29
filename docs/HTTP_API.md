@@ -78,11 +78,10 @@ O teste confirma a recusa da conta administrativa e usa um papel NOLOGIN tempor�
 ## Comandos Bash já validados
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
+# Na raiz do repositório, com Bun 1.4.4 no PATH
 docker compose ps
-bun test tests/integration/financial-http.test.ts
-bun test tests/unit tests/integration
+bun test ./tests/integration/financial-http.test.ts
+bun test ./tests/unit ./tests/integration
 bun run typecheck
 bun run build
 ```

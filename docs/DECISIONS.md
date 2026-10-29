@@ -97,7 +97,7 @@ Se o processo morrer depois de publicar e antes de marcar publishedAt, outra ins
 
 **Implementado:** MikroORM 6.6.17 com conexão explícita e runner up/down/pending; teste up/down/up com migration de prova em schema único. Sem schema sync automático no startup da aplicação. **Custo:** DDL, índices e triggers exigem revisão e testes próprios.
 
-**Implementado:** migration financeira real e permissões/constraints já validadas em schema isolado. Runtime restrito foi provisionado em projeto Compose isolado; public e ambiente de desenvolvimento original foram preservados. Reversibilidade de uma migration vazia de negócio não prova rollback seguro de dados históricos; produção exigiria plano e backup adequado.
+**Implementado:** migration financeira real e permissões/constraints já validadas em schema isolado. Runtime restrito foi provisionado em projeto Compose isolado; public e ambiente local do desenvolvedor foram preservados. Reversibilidade de uma migration vazia de negócio não prova rollback seguro de dados históricos; produção exigiria plano e backup adequado.
 
 ## 10. Escopo de entrega
 
@@ -125,7 +125,7 @@ Se o processo morrer depois de publicar e antes de marcar publishedAt, outra ins
 
 **Trade-off:** agregação/janela por wallet a cada disparo custa mais conforme o ledger cresce. Foram realizadas medições exploratórias locais; nenhuma capacidade de produção foi estabelecida. Locks do schema serializam a wallet; casos de uso implementados seguem wallet antes de reservar transação. A sequência anterior foi revista antes de existir serviço financeiro.
 
-**Permissões:** grants para papel não proprietário e triggers complementam a imutabilidade. Conta administrativa do Compose fica no provisionador; API/workers usam papel restrito provisionado no schema financial da stack isolada de entrega. Public e dados do ambiente de desenvolvimento original foram preservados.
+**Permissões:** grants para papel não proprietário e triggers complementam a imutabilidade. Conta administrativa do Compose fica no provisionador; API/workers usam papel restrito provisionado no schema financial da stack isolada de entrega. Public e dados do ambiente local do desenvolvedor foram preservados.
 
 **Limite:** schema não sabe se result_snapshot contém a resposta HTTP correta ou se o publisher publicou depois do commit. Esses comportamentos são responsabilidades dos casos de uso e workers; testes de snapshot/replay e de publicação/recuperação já os exercitam.
 

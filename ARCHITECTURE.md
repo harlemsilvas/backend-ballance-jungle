@@ -18,6 +18,14 @@ Saldo, transação, ledger, inbox quando aplicável, resposta original e outbox 
 
 Replays devolvem o resultado histórico persistido, mesmo depois de outras operações. Hash financeiro SHA-256 de JSON canônico não inclui a chave nem metadados de transporte. Hash da inbox protege o envelope recebido. [Processamento](docs/FINANCIAL_PROCESSING.md) e [eventos/hash](docs/EVENTS_AND_HASH.md).
 
+## ORM, Money e estratégia transacional
+
+**Escolha do ORM.** MikroORM 6.6.17, a opção preferencial do enunciado. Razões: Unit of Work e Identity Map explícitos, `EntityManager.fork().transactional()` com nível de isolamento declarado, `LockMode.PESSIMISTIC_WRITE` para o lock da wallet e Migrator com `up`/`down` versionados e reversíveis. O adaptador usa `allowGlobalContext: false`: cada tentativa cria seu próprio `EntityManager`, de modo que nenhum Identity Map é compartilhado entre requisições (`src/infrastructure/persistence/mikro-financial-unit-of-work.ts`). TypeORM era aceito, mas oferece esses controles de forma menos explícita para o padrão adotado; Prisma está fora do escopo. A comparação é uma justificativa de projeto, não uma medição entre os dois ORMs.
+
+**Mapeamento do Money.** O domínio não conhece o ORM. Na persistência, `money-mapper.ts` converte entre `Money` e string; o tipo da coluna é `numeric` e o valor nunca passa por `number`. O schema aplica CHECK de escala <= 2 e limite máximo; excesso de casas é rejeitado em vez de arredondado. Moeda fica em coluna própria, reidratada junto com o valor.
+
+**Estratégia transacional.** READ COMMITTED com `SELECT ... FOR UPDATE` na wallet (lock pessimista), `lock_timeout` de 5s e repetição limitada da transação completa para conflitos recuperáveis. A unidade de concorrência é a wallet; os demais invariantes ficam no banco (UNIQUE, CHECK e triggers). Alternativas descartadas: locking otimista com retry ou update condicionado, válidos, mas com mais tratamento de conflito sob disputa na mesma wallet. Detalhes e custo em [DECISIONS.md](docs/DECISIONS.md).
+
 ## Mensageria e recuperação
 
 As entradas HTTP e SQS reutilizam o mesmo caso de uso. Ack após commit; rejeições auditadas recebem ack; falhas transitórias permitem redelivery; inválidos/esgotados vão para DLQ antes de remover a origem. Inbox é persistente por consumidor/messageId.

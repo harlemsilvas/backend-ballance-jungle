@@ -94,11 +94,10 @@ Bootstrap conecta SIGINT/SIGTERM à drenagem e encerra cliente/pool ao final. M�
 Testes isolados, disponíveis agora com containers saudáveis:
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
+# Na raiz do repositório, com Bun 1.4.4 no PATH
 docker compose ps
-bun test tests/integration/messaging.test.ts
-bun test tests/unit tests/integration
+bun test ./tests/integration/messaging.test.ts
+bun test ./tests/unit ./tests/integration
 bun run typecheck
 bun run build
 ```
@@ -106,7 +105,7 @@ bun run build
 Somente as janelas de crash:
 
 ```bash
-bun test tests/integration/messaging.test.ts -t SIGKILL
+bun test ./tests/integration/messaging.test.ts -t SIGKILL
 ```
 
 A suíte cria/remove schema e filas próprios por cenário. O teste do publisher adianta lease expirado no schema isolado em vez de esperar 30s; crash e envio ao SQS são reais. O teste de DLQ espera visibilidade pelo long polling, sem sleeps arbitrários. Filhos de crash são encerrados; não executar helpers manualmente contra filas de desenvolvimento.
@@ -132,7 +131,7 @@ WORKER_MODE=consumer bun run worker
 WORKER_MODE=publisher bun run worker
 ```
 
-Filas padrão: wager-transactions.fifo, wager-transactions-dlq.fifo e wager-events.fifo. Nomes podem ser configurados por WAGER_QUEUE_NAME, WAGER_DLQ_NAME e EVENT_QUEUE_NAME. Encerrar com Ctrl+C ou SIGTERM. Os entrypoints e a stack Compose foram validados com runtime restrito em projeto/volume isolados (DELIVERY.md). O ambiente de desenvolvimento original/public não foi provisionado.
+Filas padrão: wager-transactions.fifo, wager-transactions-dlq.fifo e wager-events.fifo. Nomes podem ser configurados por WAGER_QUEUE_NAME, WAGER_DLQ_NAME e EVENT_QUEUE_NAME. Encerrar com Ctrl+C ou SIGTERM. Os entrypoints e a stack Compose foram validados com runtime restrito em projeto/volume isolados (DELIVERY.md). O ambiente local do desenvolvedor/public não foi provisionado.
 
 ## Pendências
 

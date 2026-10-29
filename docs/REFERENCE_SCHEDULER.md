@@ -49,10 +49,9 @@ Cada processo expõe observabilidade em WORKER_METRICS_PORT, padrão 9101. Usar 
 Testes isolados, disponíveis com containers saudáveis:
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
-bun test tests/integration/reference-scheduler.test.ts
-bun test tests/integration/worker-entrypoint.test.ts
+# Na raiz do repositório, com Bun 1.4.4 no PATH
+bun test ./tests/integration/reference-scheduler.test.ts
+bun test ./tests/integration/worker-entrypoint.test.ts
 bun run typecheck
 bun run build
 ```
