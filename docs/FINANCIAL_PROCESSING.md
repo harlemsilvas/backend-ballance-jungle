@@ -38,7 +38,7 @@ sequenceDiagram
   C->>U: payload, chave, contexto
   U->>U: normalizar, hash e validar domínio
   U->>DB: BEGIN
-  U->>DB: consultar chave; lock da wallet
+  U->>DB: consultar chave e travar a wallet
   U->>DB: reconsultar chave e identidade externa
   U->>U: regras, referências e movimento
   U->>DB: transação + wallet + ledger + outbox
