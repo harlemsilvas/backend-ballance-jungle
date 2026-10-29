@@ -1,6 +1,6 @@
 # Mapeamento monetário e schema financeiro
 
-Implementação inicial validada em 26/10/2026. Up/down/up foram exercitados em schemas exclusivos de teste. As três migrations também foram aplicadas ao schema financial do projeto Compose isolado da entrega, sem alterar public ou o banco de desenvolvimento original. Casos de uso financeiros agora existem e são exercitados diretamente nos testes; controllers HTTP implementados e validados em schema isolado (HTTP_API.md).
+Implementação inicial validada em 26/10/2026. Up/down/up foram exercitados em schemas exclusivos de teste. As três migrations também foram aplicadas ao schema financial do projeto Compose isolado da entrega, sem alterar public ou o banco local do desenvolvedor. Casos de uso financeiros agora existem e são exercitados diretamente nos testes; controllers HTTP implementados e validados em schema isolado (HTTP_API.md).
 
 ## Representação exata e ausência de arredondamento
 
@@ -73,12 +73,11 @@ Nenhuma migration foi aplicada ao schema público nesta etapa. Para validar, usa
 ## Executar pelo Bash
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
-bun test tests/unit/money-mapper.test.ts
+# Na raiz do repositório, com Bun 1.4.4 no PATH
+bun test ./tests/unit/money-mapper.test.ts
 docker compose ps
-bun test tests/integration/financial-schema.test.ts
-bun test tests/unit tests/integration
+bun test ./tests/integration/financial-schema.test.ts
+bun test ./tests/unit ./tests/integration
 bun run typecheck
 bun run build
 ```

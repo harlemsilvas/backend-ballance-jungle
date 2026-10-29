@@ -76,11 +76,10 @@ Gerar hash não reserva uma chave. Idempotência efetiva foi implementada nos ca
 ## 5. Executar testes no Bash
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
-bun test tests/unit/wager-request.test.ts
-bun test tests/unit/integration-events.test.ts
-bun test tests/unit
+# Na raiz do repositório, com Bun 1.4.4 no PATH
+bun test ./tests/unit/wager-request.test.ts
+bun test ./tests/unit/integration-events.test.ts
+bun test ./tests/unit
 bun run typecheck
 bun run build
 ```

@@ -1,5 +1,7 @@
 # Entrega experimental: carga e painel de relatórios
 
+> **Registro histórico.** Este documento descreve o processo que originou esta edição no repositório de desenvolvimento. Comandos como `python3 scripts/package-delivery.py --experimental` e a pasta `entrega_teste/` não existem neste repositório; aqui, os scripts `entrega.sh`, `experimento.sh` e `swagger.sh` ficam na raiz e os comandos de uso estão no [README](../README.md).
+
 Edição de 28/10/2026, validada localmente a partir de ZIP extraído em diretório temporário, sem montar os fontes do desenvolvimento nos containers. O pacote essencial `entrega.zip` permanece preservado.
 
 ## Gerar e executar

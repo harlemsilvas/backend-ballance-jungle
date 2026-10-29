@@ -27,7 +27,7 @@ Usar barreiras para criar disputa real e hooks explícitos para a janela de cras
 
 ## Registro de resultados
 
-Para cada execução registrar revisão do código, versões, comando existente, ambiente, processos, duração, esperado/observado e artefatos sem segredos. Comandos existentes: `bun test tests/unit` e `bun run test:integration`. Não anunciar scripts de concorrência ou cobertura financeira ainda não implementados. Benchmark é opcional e só deve reportar números medidos com metodologia, latências e outbox lag.
+Para cada execução registrar revisão do código, versões, comando existente, ambiente, processos, duração, esperado/observado e artefatos sem segredos. Comandos existentes: `bun test ./tests/unit` e `bun run test:integration`. Não anunciar scripts de concorrência ou cobertura financeira ainda não implementados. Benchmark é opcional e só deve reportar números medidos com metodologia, latências e outbox lag.
 
 Comandos de execução: [README](../README.md#testes). Motivos das decisões e limitações: [DECISIONS.md](DECISIONS.md).
 

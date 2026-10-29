@@ -10,7 +10,7 @@ Não adicionamos autenticação, novas regras financeiras ou dependência Swagge
 
 ## Iniciar e acessar
 
-Na pasta `entrega_teste`, com a configuração `.env` correspondente ao seu volume:
+Na raiz do repositório, com a configuração `.env` correspondente ao seu volume:
 
 ```sh
 sh entrega.sh init

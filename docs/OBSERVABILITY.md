@@ -82,13 +82,12 @@ Não atribuir p95/throughput a testes unitários. É necessário gerar carga e r
 ## Executar os testes manualmente
 
 ```bash
-cd /home/harlem/projetos/backend-challenge
-export PATH="$HOME/.bun/bin:$PATH"
-bun test tests/unit/telemetry.test.ts
-bun test tests/integration/observability.test.ts
-bun test tests/integration/messaging.test.ts
-bun test tests/integration/worker-entrypoint.test.ts
-bun test tests/unit tests/integration
+# Na raiz do repositório, com Bun 1.4.4 no PATH
+bun test ./tests/unit/telemetry.test.ts
+bun test ./tests/integration/observability.test.ts
+bun test ./tests/integration/messaging.test.ts
+bun test ./tests/integration/worker-entrypoint.test.ts
+bun test ./tests/unit ./tests/integration
 bun run typecheck
 bun run build
 ```
